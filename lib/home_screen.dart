@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var dropdownValue = 'India';
+  String dateValue;
   List<String> dropValues = [null];
   Network network = Network();
   int infected,deaths,recovered;
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     print('hello');
     getResp();
+    getDate();
   }
   Future getResp() async{
     await getNumber();
@@ -30,6 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
    // print(data);
+  }
+  Future getDate()async{
+    String temp = await network.getDate();
+    setState(() {
+      dateValue =  temp;
+    });
   }
   Future getNumber() async
   {
@@ -114,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: kTitleTextstyle,
                           ),
                           TextSpan(
-                            text: 'Newest updated on August 4',
+                            text: 'Newest updated on $dateValue',
                             style: TextStyle(color: kTextLightColor),
                           ),
                         ]),

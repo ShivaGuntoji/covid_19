@@ -30,6 +30,11 @@ class Network{
     print('here list $some' );
     return some;
   }
+  Future<String> getDate() async
+  {
+    var data = await getData();
+    return data["Date"].toString().substring(0,10);
+  }
   Future<dynamic> getValue(String countryName)async{
     var data = await getData();
     List caseValues;
